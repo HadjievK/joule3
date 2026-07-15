@@ -1,0 +1,1292 @@
+{
+  "servers": {
+    "ec-payroll": {
+      "mcp_server_name": "sap.mcp/ECPayroll",
+      "description": "MCP server for SAP SuccessFactors Employee Central Payroll OData API (EmployeePayrollRunResults, EmployeePayrollRunResultsItems)",
+      "tools": {
+        "list_employeepayrollrunresults": {
+          "description": "List EmployeePayrollRunResults entities from SAP SuccessFactors ECP. Supports $filter, $top, $skip, $select.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "string",
+                "description": "OData $filter expression, e.g. personId eq 'E001' and startDateWhenPaid ge datetime'2025-01-01T00:00:00'"
+              },
+              "top": {
+                "type": "string",
+                "description": "Maximum number of records to return (default 100)"
+              },
+              "skip": {
+                "type": "string",
+                "description": "Number of records to skip for pagination"
+              },
+              "select": {
+                "type": "string",
+                "description": "Comma-separated list of fields to return"
+              },
+              "expand": {
+                "type": "string",
+                "description": "Navigation properties to expand, e.g. employeePayrollRunResultsItems"
+              }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "d": {
+              "results": [
+                {
+                  "externalCode": "PRR-2025-001",
+                  "personId": "E001",
+                  "userId": "alice.johnson",
+                  "companyId": "BestRun",
+                  "payrollProvider": "SAP_ECP",
+                  "startDateWhenPaid": "/Date(1735689600000)/",
+                  "endDateWhenPaid": "/Date(1738367999000)/",
+                  "payDate": "/Date(1738368000000)/",
+                  "currency": "USD",
+                  "grossAmount": "8500.00",
+                  "netAmount": "6120.00",
+                  "totalDeductions": "2380.00",
+                  "payrollRunStatus": "Completed",
+                  "payrollArea": "US01",
+                  "employeePayrollRunResultsItems": {
+                    "results": [
+                      {
+                        "externalCode": "PRR-2025-001-001",
+                        "wageType": "1000",
+                        "wageTypeDescription": "Basic Salary",
+                        "payrollProviderWageType": "1000",
+                        "amount": "7000.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "EARN",
+                        "category": "EARNINGS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-001-002",
+                        "wageType": "2010",
+                        "wageTypeDescription": "Overtime Pay",
+                        "payrollProviderWageType": "2010",
+                        "amount": "1500.00",
+                        "currency": "USD",
+                        "quantity": "20.00",
+                        "unit": "HR",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "EARN",
+                        "category": "EARNINGS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-001-003",
+                        "wageType": "4010",
+                        "wageTypeDescription": "Federal Income Tax",
+                        "payrollProviderWageType": "4010",
+                        "amount": "-1400.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "TAX",
+                        "category": "TAX_DEDUCTIONS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-001-004",
+                        "wageType": "4020",
+                        "wageTypeDescription": "State Income Tax",
+                        "payrollProviderWageType": "4020",
+                        "amount": "-560.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "TAX",
+                        "category": "TAX_DEDUCTIONS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-001-005",
+                        "wageType": "5010",
+                        "wageTypeDescription": "Health Insurance",
+                        "payrollProviderWageType": "5010",
+                        "amount": "-420.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "DED",
+                        "category": "BENEFITS_DEDUCTIONS"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "externalCode": "PRR-2025-002",
+                  "personId": "E002",
+                  "userId": "bob.martinez",
+                  "companyId": "BestRun",
+                  "payrollProvider": "SAP_ECP",
+                  "startDateWhenPaid": "/Date(1735689600000)/",
+                  "endDateWhenPaid": "/Date(1738367999000)/",
+                  "payDate": "/Date(1738368000000)/",
+                  "currency": "USD",
+                  "grossAmount": "6200.00",
+                  "netAmount": "4510.00",
+                  "totalDeductions": "1690.00",
+                  "payrollRunStatus": "Completed",
+                  "payrollArea": "US01",
+                  "employeePayrollRunResultsItems": {
+                    "results": [
+                      {
+                        "externalCode": "PRR-2025-002-001",
+                        "wageType": "1000",
+                        "wageTypeDescription": "Basic Salary",
+                        "payrollProviderWageType": "1000",
+                        "amount": "5800.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "EARN",
+                        "category": "EARNINGS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-002-002",
+                        "wageType": "2020",
+                        "wageTypeDescription": "Shift Allowance",
+                        "payrollProviderWageType": "2020",
+                        "amount": "400.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "EARN",
+                        "category": "ALLOWANCES"
+                      },
+                      {
+                        "externalCode": "PRR-2025-002-003",
+                        "wageType": "4010",
+                        "wageTypeDescription": "Federal Income Tax",
+                        "payrollProviderWageType": "4010",
+                        "amount": "-1020.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "TAX",
+                        "category": "TAX_DEDUCTIONS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-002-004",
+                        "wageType": "5010",
+                        "wageTypeDescription": "Health Insurance",
+                        "payrollProviderWageType": "5010",
+                        "amount": "-420.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "DED",
+                        "category": "BENEFITS_DEDUCTIONS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-002-005",
+                        "wageType": "5020",
+                        "wageTypeDescription": "401k Contribution",
+                        "payrollProviderWageType": "5020",
+                        "amount": "-250.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "DED",
+                        "category": "RETIREMENT_DEDUCTIONS"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "externalCode": "PRR-2025-003",
+                  "personId": "E003",
+                  "userId": "carol.chen",
+                  "companyId": "BestRun",
+                  "payrollProvider": "SAP_ECP",
+                  "startDateWhenPaid": "/Date(1735689600000)/",
+                  "endDateWhenPaid": "/Date(1738367999000)/",
+                  "payDate": "/Date(1738368000000)/",
+                  "currency": "USD",
+                  "grossAmount": "22500.00",
+                  "netAmount": "15300.00",
+                  "totalDeductions": "7200.00",
+                  "payrollRunStatus": "Completed",
+                  "payrollArea": "US01",
+                  "employeePayrollRunResultsItems": {
+                    "results": [
+                      {
+                        "externalCode": "PRR-2025-003-001",
+                        "wageType": "1000",
+                        "wageTypeDescription": "Basic Salary",
+                        "payrollProviderWageType": "1000",
+                        "amount": "18000.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "EARN",
+                        "category": "EARNINGS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-003-002",
+                        "wageType": "3000",
+                        "wageTypeDescription": "Annual Bonus",
+                        "payrollProviderWageType": "3000",
+                        "amount": "4500.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "EARN",
+                        "category": "BONUSES"
+                      },
+                      {
+                        "externalCode": "PRR-2025-003-003",
+                        "wageType": "4010",
+                        "wageTypeDescription": "Federal Income Tax",
+                        "payrollProviderWageType": "4010",
+                        "amount": "-5400.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "TAX",
+                        "category": "TAX_DEDUCTIONS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-003-004",
+                        "wageType": "4020",
+                        "wageTypeDescription": "State Income Tax",
+                        "payrollProviderWageType": "4020",
+                        "amount": "-1350.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "TAX",
+                        "category": "TAX_DEDUCTIONS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-003-005",
+                        "wageType": "4030",
+                        "wageTypeDescription": "Medicare",
+                        "payrollProviderWageType": "4030",
+                        "amount": "-326.25",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "TAX",
+                        "category": "TAX_DEDUCTIONS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-003-006",
+                        "wageType": "5010",
+                        "wageTypeDescription": "Health Insurance",
+                        "payrollProviderWageType": "5010",
+                        "amount": "-420.00",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "DED",
+                        "category": "BENEFITS_DEDUCTIONS"
+                      },
+                      {
+                        "externalCode": "PRR-2025-003-007",
+                        "wageType": "5020",
+                        "wageTypeDescription": "401k Contribution",
+                        "payrollProviderWageType": "5020",
+                        "amount": "-703.75",
+                        "currency": "USD",
+                        "quantity": "1.00",
+                        "unit": "EA",
+                        "startDateWhenEarned": "/Date(1735689600000)/",
+                        "endDateWhenEarned": "/Date(1738367999000)/",
+                        "processingClass": "DED",
+                        "category": "RETIREMENT_DEDUCTIONS"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "get_employeepayrollrunresults_by_key": {
+          "description": "Get a single EmployeePayrollRunResults entity by its key (externalCode).",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "externalCode": {
+                "type": "string",
+                "description": "Unique identifier of the payroll run result, e.g. 'PRR-2025-001'"
+              }
+            },
+            "required": [
+              "externalCode"
+            ]
+          },
+          "mock_response": {
+            "d": {
+              "externalCode": "PRR-2025-001",
+              "personId": "E001",
+              "userId": "alice.johnson",
+              "companyId": "BestRun",
+              "payrollProvider": "SAP_ECP",
+              "startDateWhenPaid": "/Date(1735689600000)/",
+              "endDateWhenPaid": "/Date(1738367999000)/",
+              "payDate": "/Date(1738368000000)/",
+              "currency": "USD",
+              "grossAmount": "8500.00",
+              "netAmount": "6120.00",
+              "totalDeductions": "2380.00",
+              "payrollRunStatus": "Completed",
+              "payrollArea": "US01",
+              "employeePayrollRunResultsItems": {
+                "results": [
+                  {
+                    "externalCode": "PRR-2025-001-001",
+                    "wageType": "1000",
+                    "wageTypeDescription": "Basic Salary",
+                    "amount": "7000.00",
+                    "currency": "USD",
+                    "processingClass": "EARN",
+                    "category": "EARNINGS"
+                  },
+                  {
+                    "externalCode": "PRR-2025-001-002",
+                    "wageType": "2010",
+                    "wageTypeDescription": "Overtime Pay",
+                    "amount": "1500.00",
+                    "currency": "USD",
+                    "processingClass": "EARN",
+                    "category": "EARNINGS"
+                  },
+                  {
+                    "externalCode": "PRR-2025-001-003",
+                    "wageType": "4010",
+                    "wageTypeDescription": "Federal Income Tax",
+                    "amount": "-1400.00",
+                    "currency": "USD",
+                    "processingClass": "TAX",
+                    "category": "TAX_DEDUCTIONS"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "list_employeepayrollrunresultsitems": {
+          "description": "List EmployeePayrollRunResultsItems (individual wage type line items) with filtering.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "string",
+                "description": "OData $filter, e.g. parent_externalCode eq 'PRR-2025-001'"
+              },
+              "top": {
+                "type": "string",
+                "description": "Maximum number of line items to return"
+              },
+              "skip": {
+                "type": "string",
+                "description": "Number of records to skip"
+              },
+              "select": {
+                "type": "string",
+                "description": "Comma-separated fields to return"
+              }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "d": {
+              "results": [
+                {
+                  "externalCode": "PRR-2025-001-001",
+                  "parent_externalCode": "PRR-2025-001",
+                  "wageType": "1000",
+                  "wageTypeDescription": "Basic Salary",
+                  "payrollProviderWageType": "1000",
+                  "amount": "7000.00",
+                  "currency": "USD",
+                  "quantity": "1.00",
+                  "unit": "EA",
+                  "startDateWhenEarned": "/Date(1735689600000)/",
+                  "endDateWhenEarned": "/Date(1738367999000)/",
+                  "processingClass": "EARN",
+                  "category": "EARNINGS",
+                  "payComponent": "BASE_SALARY"
+                },
+                {
+                  "externalCode": "PRR-2025-001-002",
+                  "parent_externalCode": "PRR-2025-001",
+                  "wageType": "2010",
+                  "wageTypeDescription": "Overtime Pay",
+                  "payrollProviderWageType": "2010",
+                  "amount": "1500.00",
+                  "currency": "USD",
+                  "quantity": "20.00",
+                  "unit": "HR",
+                  "startDateWhenEarned": "/Date(1735689600000)/",
+                  "endDateWhenEarned": "/Date(1738367999000)/",
+                  "processingClass": "EARN",
+                  "category": "EARNINGS",
+                  "payComponent": "OVERTIME"
+                },
+                {
+                  "externalCode": "PRR-2025-003-001",
+                  "parent_externalCode": "PRR-2025-003",
+                  "wageType": "1000",
+                  "wageTypeDescription": "Basic Salary",
+                  "payrollProviderWageType": "1000",
+                  "amount": "18000.00",
+                  "currency": "USD",
+                  "quantity": "1.00",
+                  "unit": "EA",
+                  "startDateWhenEarned": "/Date(1735689600000)/",
+                  "endDateWhenEarned": "/Date(1738367999000)/",
+                  "processingClass": "EARN",
+                  "category": "EARNINGS",
+                  "payComponent": "BASE_SALARY"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ec-tax-declaration": {
+      "mcp_server_name": "sap.mcp/sfodata",
+      "description": "MCP server for SAP SuccessFactors Income Tax Declaration OData service (ItDeclaration, ItDeclInvestmentType, DeclarationType, FiscalYearVariant).",
+      "tools": {
+        "get_metadata_sfodata": {
+          "description": "Get metadata for the SuccessFactors OData service.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          },
+          "mock_response": {
+            "edmx": "Edmx Version 4.0",
+            "dataServices": {
+              "schema": [
+                {
+                  "namespace": "SFOData",
+                  "entityTypes": [
+                    "ItDeclaration",
+                    "ItDeclInvestmentType",
+                    "DeclarationType",
+                    "FiscalYearVariant"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "list_itdeclaration_for_sfodata": {
+          "description": "List ItDeclaration (Income Tax Declaration) entities from SAP SuccessFactors.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "string",
+                "description": "OData $filter expression, e.g. externalCode eq 'E001'"
+              },
+              "top": {
+                "type": "string",
+                "description": "Maximum number of records to return"
+              },
+              "skip": {
+                "type": "string",
+                "description": "Number of records to skip"
+              },
+              "select": {
+                "type": "string",
+                "description": "Comma-separated fields to return"
+              }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "d": {
+              "results": [
+                {
+                  "effectiveStartDate": "/Date(1704067200000)/",
+                  "externalCode": "E001",
+                  "declarationTypeCode": "REGULAR",
+                  "fiscalYear": "2025",
+                  "taxRegime": "NEW",
+                  "grossIncome": "102000.00",
+                  "taxableIncome": "82000.00",
+                  "taxPayable": "16800.00",
+                  "taxAlreadyPaid": "16800.00",
+                  "taxBalance": "0.00",
+                  "currency": "USD",
+                  "status": "Submitted",
+                  "submissionDate": "/Date(1735776000000)/",
+                  "complianceFlag": "COMPLIANT",
+                  "createdBy": "alice.johnson",
+                  "createdDate": "/Date(1704153600000)/",
+                  "lastModifiedBy": "alice.johnson",
+                  "lastModifiedDate": "/Date(1735776000000)/"
+                },
+                {
+                  "effectiveStartDate": "/Date(1704067200000)/",
+                  "externalCode": "E002",
+                  "declarationTypeCode": "REGULAR",
+                  "fiscalYear": "2025",
+                  "taxRegime": "OLD",
+                  "grossIncome": "74400.00",
+                  "taxableIncome": "60000.00",
+                  "taxPayable": "12200.00",
+                  "taxAlreadyPaid": "12200.00",
+                  "taxBalance": "0.00",
+                  "currency": "USD",
+                  "status": "Submitted",
+                  "submissionDate": "/Date(1735776000000)/",
+                  "complianceFlag": "COMPLIANT",
+                  "createdBy": "bob.martinez",
+                  "createdDate": "/Date(1704153600000)/",
+                  "lastModifiedBy": "bob.martinez",
+                  "lastModifiedDate": "/Date(1735776000000)/"
+                },
+                {
+                  "effectiveStartDate": "/Date(1704067200000)/",
+                  "externalCode": "E004",
+                  "declarationTypeCode": "REGULAR",
+                  "fiscalYear": "2025",
+                  "taxRegime": "NEW",
+                  "grossIncome": "95000.00",
+                  "taxableIncome": "80000.00",
+                  "taxPayable": "16000.00",
+                  "taxAlreadyPaid": "12000.00",
+                  "taxBalance": "4000.00",
+                  "currency": "USD",
+                  "status": "Pending",
+                  "submissionDate": null,
+                  "complianceFlag": "NON_COMPLIANT",
+                  "createdBy": "dave.wilson",
+                  "createdDate": "/Date(1704153600000)/",
+                  "lastModifiedBy": "hr.admin",
+                  "lastModifiedDate": "/Date(1738368000000)/"
+                }
+              ]
+            }
+          }
+        },
+        "get_itdeclaration_for_sfodata": {
+          "description": "Get a single ItDeclaration entity by effectiveStartDate and externalCode.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "effectivestartdate": {
+                "type": "string",
+                "description": "Effective start date of the declaration in SAP datetime format, e.g. datetime'2025-01-01T00:00:00'"
+              },
+              "externalcode": {
+                "type": "string",
+                "description": "Employee external code / person ID, e.g. 'E001'"
+              }
+            },
+            "required": [
+              "effectivestartdate",
+              "externalcode"
+            ]
+          },
+          "mock_response": {
+            "d": {
+              "effectiveStartDate": "/Date(1704067200000)/",
+              "externalCode": "E001",
+              "declarationTypeCode": "REGULAR",
+              "fiscalYear": "2025",
+              "taxRegime": "NEW",
+              "grossIncome": "102000.00",
+              "taxableIncome": "82000.00",
+              "taxPayable": "16800.00",
+              "taxAlreadyPaid": "16800.00",
+              "taxBalance": "0.00",
+              "currency": "USD",
+              "status": "Submitted",
+              "submissionDate": "/Date(1735776000000)/",
+              "complianceFlag": "COMPLIANT",
+              "investmentDeclarations": {
+                "results": [
+                  {
+                    "investmentType": "80C",
+                    "description": "Life Insurance Premium",
+                    "declaredAmount": "12000.00",
+                    "verifiedAmount": "12000.00",
+                    "currency": "USD"
+                  },
+                  {
+                    "investmentType": "80D",
+                    "description": "Health Insurance Premium",
+                    "declaredAmount": "5040.00",
+                    "verifiedAmount": "5040.00",
+                    "currency": "USD"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "list_itdeclinvestmenttype_for_sfodata": {
+          "description": "List ItDeclInvestmentType \u2014 the catalogue of allowed tax investment declaration types.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "string",
+                "description": "OData $filter expression"
+              },
+              "top": {
+                "type": "string",
+                "description": "Maximum number of records to return"
+              }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "d": {
+              "results": [
+                {
+                  "externalCode": "80C",
+                  "name": "Section 80C Investments",
+                  "description": "LIC, PPF, ELSS, NSC and other eligible 80C investments",
+                  "maxLimit": "150000.00",
+                  "currency": "USD",
+                  "taxSection": "80C",
+                  "isActive": true
+                },
+                {
+                  "externalCode": "80D",
+                  "name": "Medical Insurance",
+                  "description": "Health insurance premium deduction under Section 80D",
+                  "maxLimit": "50000.00",
+                  "currency": "USD",
+                  "taxSection": "80D",
+                  "isActive": true
+                },
+                {
+                  "externalCode": "HRA",
+                  "name": "House Rent Allowance",
+                  "description": "HRA exemption on production of rent receipts",
+                  "maxLimit": "0.00",
+                  "currency": "USD",
+                  "taxSection": "HRA",
+                  "isActive": true
+                },
+                {
+                  "externalCode": "LTA",
+                  "name": "Leave Travel Allowance",
+                  "description": "LTA exemption for travel within the country",
+                  "maxLimit": "0.00",
+                  "currency": "USD",
+                  "taxSection": "LTA",
+                  "isActive": true
+                }
+              ]
+            }
+          }
+        },
+        "list_declarationtype_for_sfodata": {
+          "description": "List DeclarationType \u2014 reference data for the types of income tax declarations.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "string",
+                "description": "OData $filter expression"
+              },
+              "top": {
+                "type": "string",
+                "description": "Maximum number of records to return"
+              }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "d": {
+              "results": [
+                {
+                  "externalCode": "REGULAR",
+                  "name": "Regular Declaration",
+                  "description": "Standard annual income tax declaration",
+                  "isActive": true,
+                  "applicableFrom": "/Date(1704067200000)/"
+                },
+                {
+                  "externalCode": "REVISED",
+                  "name": "Revised Declaration",
+                  "description": "Revised declaration when previous submission had errors",
+                  "isActive": true,
+                  "applicableFrom": "/Date(1704067200000)/"
+                },
+                {
+                  "externalCode": "INTERIM",
+                  "name": "Interim Declaration",
+                  "description": "Mid-year interim declaration for major life events",
+                  "isActive": true,
+                  "applicableFrom": "/Date(1704067200000)/"
+                }
+              ]
+            }
+          }
+        },
+        "list_fiscalyearvariant_for_sfodata": {
+          "description": "List FiscalYearVariant \u2014 the configured fiscal year variants for tax calculations.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "string",
+                "description": "OData $filter expression"
+              },
+              "top": {
+                "type": "string",
+                "description": "Maximum number of records to return"
+              }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "d": {
+              "results": [
+                {
+                  "externalCode": "V3",
+                  "name": "April\u2013March Fiscal Year",
+                  "description": "Indian fiscal year running April 1 to March 31",
+                  "startMonth": 4,
+                  "startDay": 1,
+                  "endMonth": 3,
+                  "endDay": 31,
+                  "isActive": true,
+                  "applicableCountry": "IN"
+                },
+                {
+                  "externalCode": "K4",
+                  "name": "January\u2013December Fiscal Year",
+                  "description": "Calendar year fiscal variant",
+                  "startMonth": 1,
+                  "startDay": 1,
+                  "endMonth": 12,
+                  "endDay": 31,
+                  "isActive": true,
+                  "applicableCountry": "US"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ec-compensation": {
+      "mcp_server_name": "sap.mcp/ECCompensation",
+      "description": "MCP server for SAP SuccessFactors Employee Central Compensation OData API (CompensationEmployee, CompensationPayComponent).",
+      "tools": {
+        "list_compensationemployee": {
+          "description": "List CompensationEmployee records \u2014 pay grade, salary range, and current compensation details per employee.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "string",
+                "description": "OData $filter, e.g. userId eq 'alice.johnson'"
+              },
+              "top": {
+                "type": "string",
+                "description": "Maximum number of records to return"
+              },
+              "skip": {
+                "type": "string",
+                "description": "Number of records to skip"
+              },
+              "select": {
+                "type": "string",
+                "description": "Comma-separated fields to return"
+              },
+              "expand": {
+                "type": "string",
+                "description": "Navigation properties to expand"
+              }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "d": {
+              "results": [
+                {
+                  "userId": "alice.johnson",
+                  "personId": "E001",
+                  "firstName": "Alice",
+                  "lastName": "Johnson",
+                  "companyId": "BestRun",
+                  "jobCode": "IC3",
+                  "jobTitle": "Senior Software Engineer",
+                  "department": "Engineering",
+                  "costCenter": "CC-1000",
+                  "payGrade": "G5",
+                  "payGradeDescription": "Grade 5 \u2014 Individual Contributor",
+                  "currency": "USD",
+                  "annualSalary": "84000.00",
+                  "monthlySalary": "7000.00",
+                  "minSalary": "70000.00",
+                  "midSalary": "87500.00",
+                  "maxSalary": "105000.00",
+                  "compaRatio": "0.96",
+                  "salaryRangePosition": "BELOW_MID",
+                  "lastSalaryIncreaseDate": "/Date(1704067200000)/",
+                  "lastSalaryIncreasePercent": "4.80",
+                  "eligibleForBonus": true,
+                  "targetBonusPercent": "12.00",
+                  "effectiveDate": "/Date(1704067200000)/"
+                },
+                {
+                  "userId": "bob.martinez",
+                  "personId": "E002",
+                  "firstName": "Bob",
+                  "lastName": "Martinez",
+                  "companyId": "BestRun",
+                  "jobCode": "IC2",
+                  "jobTitle": "Software Engineer",
+                  "department": "Engineering",
+                  "costCenter": "CC-1000",
+                  "payGrade": "G4",
+                  "payGradeDescription": "Grade 4 \u2014 Individual Contributor",
+                  "currency": "USD",
+                  "annualSalary": "69600.00",
+                  "monthlySalary": "5800.00",
+                  "minSalary": "58000.00",
+                  "midSalary": "72500.00",
+                  "maxSalary": "87000.00",
+                  "compaRatio": "0.96",
+                  "salaryRangePosition": "BELOW_MID",
+                  "lastSalaryIncreaseDate": "/Date(1704067200000)/",
+                  "lastSalaryIncreasePercent": "3.50",
+                  "eligibleForBonus": true,
+                  "targetBonusPercent": "8.00",
+                  "effectiveDate": "/Date(1704067200000)/"
+                },
+                {
+                  "userId": "carol.chen",
+                  "personId": "E003",
+                  "firstName": "Carol",
+                  "lastName": "Chen",
+                  "companyId": "BestRun",
+                  "jobCode": "MGR3",
+                  "jobTitle": "Engineering Manager",
+                  "department": "Engineering",
+                  "costCenter": "CC-1000",
+                  "payGrade": "M3",
+                  "payGradeDescription": "Grade M3 \u2014 Manager",
+                  "currency": "USD",
+                  "annualSalary": "216000.00",
+                  "monthlySalary": "18000.00",
+                  "minSalary": "160000.00",
+                  "midSalary": "200000.00",
+                  "maxSalary": "240000.00",
+                  "compaRatio": "1.08",
+                  "salaryRangePosition": "ABOVE_MID",
+                  "lastSalaryIncreaseDate": "/Date(1704067200000)/",
+                  "lastSalaryIncreasePercent": "6.00",
+                  "eligibleForBonus": true,
+                  "targetBonusPercent": "20.00",
+                  "effectiveDate": "/Date(1704067200000)/"
+                },
+                {
+                  "userId": "dave.wilson",
+                  "personId": "E004",
+                  "firstName": "Dave",
+                  "lastName": "Wilson",
+                  "companyId": "BestRun",
+                  "jobCode": "IC2",
+                  "jobTitle": "Data Analyst",
+                  "department": "Finance",
+                  "costCenter": "CC-2000",
+                  "payGrade": "G4",
+                  "payGradeDescription": "Grade 4 \u2014 Individual Contributor",
+                  "currency": "USD",
+                  "annualSalary": "66000.00",
+                  "monthlySalary": "5500.00",
+                  "minSalary": "58000.00",
+                  "midSalary": "72500.00",
+                  "maxSalary": "87000.00",
+                  "compaRatio": "0.91",
+                  "salaryRangePosition": "BELOW_MID",
+                  "lastSalaryIncreaseDate": "/Date(1672531200000)/",
+                  "lastSalaryIncreasePercent": "2.00",
+                  "eligibleForBonus": false,
+                  "targetBonusPercent": "0.00",
+                  "effectiveDate": "/Date(1704067200000)/"
+                }
+              ]
+            }
+          }
+        },
+        "get_compensationemployee_by_key": {
+          "description": "Get a single CompensationEmployee record by userId.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "Employee userId in SuccessFactors, e.g. 'alice.johnson'"
+              }
+            },
+            "required": [
+              "userId"
+            ]
+          },
+          "mock_response": {
+            "d": {
+              "userId": "alice.johnson",
+              "personId": "E001",
+              "firstName": "Alice",
+              "lastName": "Johnson",
+              "companyId": "BestRun",
+              "jobCode": "IC3",
+              "jobTitle": "Senior Software Engineer",
+              "department": "Engineering",
+              "costCenter": "CC-1000",
+              "payGrade": "G5",
+              "payGradeDescription": "Grade 5 \u2014 Individual Contributor",
+              "currency": "USD",
+              "annualSalary": "84000.00",
+              "monthlySalary": "7000.00",
+              "minSalary": "70000.00",
+              "midSalary": "87500.00",
+              "maxSalary": "105000.00",
+              "compaRatio": "0.96",
+              "salaryRangePosition": "BELOW_MID",
+              "lastSalaryIncreaseDate": "/Date(1704067200000)/",
+              "lastSalaryIncreasePercent": "4.80",
+              "eligibleForBonus": true,
+              "targetBonusPercent": "12.00",
+              "effectiveDate": "/Date(1704067200000)/"
+            }
+          }
+        },
+        "list_compensationpaycomponent": {
+          "description": "List CompensationPayComponent \u2014 the individual pay component entries (base pay, allowances, equity) per employee.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "string",
+                "description": "OData $filter, e.g. userId eq 'carol.chen' and payComponentType eq 'BONUS'"
+              },
+              "top": {
+                "type": "string",
+                "description": "Maximum number of records to return"
+              },
+              "skip": {
+                "type": "string",
+                "description": "Number of records to skip"
+              }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "d": {
+              "results": [
+                {
+                  "externalCode": "PC-E001-BASE",
+                  "userId": "alice.johnson",
+                  "personId": "E001",
+                  "payComponentType": "BASE_PAY",
+                  "payComponentCode": "SALARY",
+                  "payComponentDescription": "Annual Base Salary",
+                  "amount": "84000.00",
+                  "currency": "USD",
+                  "frequency": "ANNUAL",
+                  "effectiveDate": "/Date(1704067200000)/",
+                  "endDate": "/Date(9999999999000)/"
+                },
+                {
+                  "externalCode": "PC-E001-BONUS",
+                  "userId": "alice.johnson",
+                  "personId": "E001",
+                  "payComponentType": "BONUS",
+                  "payComponentCode": "PERF_BONUS",
+                  "payComponentDescription": "Performance Bonus",
+                  "amount": "10080.00",
+                  "currency": "USD",
+                  "frequency": "ANNUAL",
+                  "effectiveDate": "/Date(1704067200000)/",
+                  "endDate": "/Date(9999999999000)/"
+                },
+                {
+                  "externalCode": "PC-E003-BASE",
+                  "userId": "carol.chen",
+                  "personId": "E003",
+                  "payComponentType": "BASE_PAY",
+                  "payComponentCode": "SALARY",
+                  "payComponentDescription": "Annual Base Salary",
+                  "amount": "216000.00",
+                  "currency": "USD",
+                  "frequency": "ANNUAL",
+                  "effectiveDate": "/Date(1704067200000)/",
+                  "endDate": "/Date(9999999999000)/"
+                },
+                {
+                  "externalCode": "PC-E003-BONUS",
+                  "userId": "carol.chen",
+                  "personId": "E003",
+                  "payComponentType": "BONUS",
+                  "payComponentCode": "PERF_BONUS",
+                  "payComponentDescription": "Performance Bonus",
+                  "amount": "43200.00",
+                  "currency": "USD",
+                  "frequency": "ANNUAL",
+                  "effectiveDate": "/Date(1704067200000)/",
+                  "endDate": "/Date(9999999999000)/"
+                },
+                {
+                  "externalCode": "PC-E003-RSU",
+                  "userId": "carol.chen",
+                  "personId": "E003",
+                  "payComponentType": "EQUITY",
+                  "payComponentCode": "RSU",
+                  "payComponentDescription": "Restricted Stock Units",
+                  "amount": "30000.00",
+                  "currency": "USD",
+                  "frequency": "ANNUAL",
+                  "effectiveDate": "/Date(1704067200000)/",
+                  "endDate": "/Date(9999999999000)/"
+                }
+              ]
+            }
+          }
+        },
+        "update_compensationemployee": {
+          "description": "\u26a0\ufe0f RISKY WRITE \u2014 Update compensation data for an employee (salary, pay grade). Requires explicit user approval. Always call with confirmed=False first, then confirmed=True only after the user approves.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "Employee userId, e.g. 'alice.johnson'"
+              },
+              "annualSalary": {
+                "type": "string",
+                "description": "New annual salary as decimal string, e.g. '88000.00'"
+              },
+              "currency": {
+                "type": "string",
+                "description": "ISO 4217 currency code, e.g. 'USD'"
+              },
+              "payGrade": {
+                "type": "string",
+                "description": "New pay grade code, e.g. 'G5'"
+              },
+              "effectiveDate": {
+                "type": "string",
+                "description": "Effective date in SAP datetime format"
+              },
+              "reason": {
+                "type": "string",
+                "description": "Reason for the compensation change, e.g. 'Annual merit increase'"
+              }
+            },
+            "required": [
+              "userId",
+              "annualSalary",
+              "currency",
+              "effectiveDate"
+            ]
+          },
+          "mock_response": {
+            "d": {
+              "userId": "alice.johnson",
+              "personId": "E001",
+              "annualSalary": "88000.00",
+              "currency": "USD",
+              "payGrade": "G5",
+              "effectiveDate": "/Date(1738368000000)/",
+              "status": "Updated",
+              "changeReason": "Annual merit increase",
+              "updatedBy": "hr.admin",
+              "updatedAt": "/Date(1752566243000)/"
+            }
+          }
+        },
+        "update_bonus_eligibility": {
+          "description": "\u26a0\ufe0f RISKY WRITE \u2014 Enable or disable bonus eligibility and set the target bonus percentage for an employee in SAP SuccessFactors Employee Central. ALWAYS call with confirmed=False first to show the user a confirmation summary. Only call with confirmed=True after the user explicitly approves. Changes affect future payroll runs immediately.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "Employee userId, e.g. 'dave.wilson'"
+              },
+              "eligible_for_bonus": {
+                "type": "boolean",
+                "description": "true to enable bonus eligibility, false to remove it"
+              },
+              "target_bonus_percent": {
+                "type": "string",
+                "description": "Target bonus as % of annual salary, e.g. '10.00'"
+              },
+              "effective_date": {
+                "type": "string",
+                "description": "Effective date YYYY-MM-DD (defaults to today)"
+              },
+              "change_reason": {
+                "type": "string",
+                "description": "Reason for the change, e.g. 'Promotion to senior level'"
+              },
+              "confirmed": {
+                "type": "boolean",
+                "description": "Must be true to execute the write. Default false returns confirmation summary only."
+              }
+            },
+            "required": [
+              "userId",
+              "eligible_for_bonus"
+            ]
+          },
+          "mock_response": {
+            "status": "Updated",
+            "userId": "dave.wilson",
+            "personId": "E004",
+            "eligibleForBonus": true,
+            "targetBonusPercent": "10.00",
+            "effectiveDate": "2026-07-15",
+            "changeReason": "Performance review \u2014 bonus eligibility granted",
+            "updatedBy": "agent (mock)",
+            "updatedAt": "2026-07-15T06:17:23Z"
+          }
+        },
+        "update_salary": {
+          "description": "\u26a0\ufe0f RISKY WRITE \u2014 Update an employee's annual salary in SAP SuccessFactors Employee Central. ALWAYS call with confirmed=False first to show the user a summary. Only call with confirmed=True after the user explicitly approves.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "Employee userId, e.g. 'alice.johnson'"
+              },
+              "new_annual_salary": {
+                "type": "string",
+                "description": "New annual salary as decimal string, e.g. '88000.00'"
+              },
+              "currency": {
+                "type": "string",
+                "description": "ISO 4217 currency code (default 'USD')"
+              },
+              "effective_date": {
+                "type": "string",
+                "description": "Effective date YYYY-MM-DD (defaults to today)"
+              },
+              "change_reason": {
+                "type": "string",
+                "description": "Reason for the salary change"
+              },
+              "confirmed": {
+                "type": "boolean",
+                "description": "Must be true to execute the write. Default false returns confirmation summary only."
+              }
+            },
+            "required": [
+              "userId",
+              "new_annual_salary"
+            ]
+          },
+          "mock_response": {
+            "status": "Updated",
+            "userId": "alice.johnson",
+            "annualSalary": "88200.00",
+            "monthlySalary": "7350.00",
+            "currency": "USD",
+            "effectiveDate": "2026-07-15",
+            "changeReason": "Annual merit increase \u2014 5%",
+            "updatedBy": "agent (mock)",
+            "updatedAt": "2026-07-15T06:17:23Z"
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "created_for_agent": "sf-payroll-agent",
+    "mock_mode": true,
+    "deterministic": true,
+    "total_servers": 3,
+    "total_tools": 15,
+    "generated_from": [
+      "translation.json",
+      "asset.yaml",
+      "app/tools/query_payroll.py",
+      "app/tools/detect_anomalies.py"
+    ],
+    "generation_date": "2026-07-15",
+    "test_employees": [
+      {
+        "personId": "E001",
+        "userId": "alice.johnson",
+        "name": "Alice Johnson",
+        "role": "Senior Software Engineer",
+        "dept": "Engineering"
+      },
+      {
+        "personId": "E002",
+        "userId": "bob.martinez",
+        "name": "Bob Martinez",
+        "role": "Software Engineer",
+        "dept": "Engineering"
+      },
+      {
+        "personId": "E003",
+        "userId": "carol.chen",
+        "name": "Carol Chen",
+        "role": "Engineering Manager",
+        "dept": "Engineering"
+      },
+      {
+        "personId": "E004",
+        "userId": "dave.wilson",
+        "name": "Dave Wilson",
+        "role": "Data Analyst",
+        "dept": "Finance"
+      }
+    ],
+    "anomaly_scenarios": [
+      "E003 basic salary (18000/mo) is a statistical outlier vs E001 (7000) and E002 (5800) \u2014 z-score > 2.5",
+      "E004 tax declaration has taxBalance=4000 and complianceFlag=NON_COMPLIANT \u2014 triggers tax validation alert",
+      "E004 compensation compaRatio=0.91 with no bonus eligibility \u2014 compensation review scenario"
+    ],
+    "write_tool_test_scenarios": [
+      "update_salary: 'Give Alice a 5% raise' \u2192 agent calls update_salary(userId='alice.johnson', new_annual_salary='88200.00', confirmed=False) \u2192 shows CONFIRMATION_REQUIRED \u2192 user says 'yes' \u2192 calls with confirmed=True",
+      "update_bonus_eligibility: 'Enable bonus for Dave at 10%' \u2192 agent calls update_bonus_eligibility(userId='dave.wilson', eligible_for_bonus=True, target_bonus_percent='10.00', confirmed=False) \u2192 shows summary \u2192 user approves \u2192 confirmed=True",
+      "cancel flow: user replies 'cancel' after seeing confirmation \u2192 agent MUST NOT call tool again with confirmed=True"
+    ]
+  }
+}

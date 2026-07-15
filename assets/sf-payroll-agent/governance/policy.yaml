@@ -1,0 +1,120 @@
+apiVersion: governance.toolkit/v1
+name: sf-payroll-agent-policy
+description: >
+  Payroll governance policy for the SAP SuccessFactors Payroll AI Agent.
+  Covers OWASP ASI 2026 threats: Goal Hijack (ASI-01), Tool Misuse (ASI-02),
+  Identity & Privilege Abuse (ASI-03), Data Exfiltration (ASI-04),
+  Prompt Injection (ASI-05), and Cascading Failures (ASI-06).
+
+default_action: allow
+
+rules:
+  # ── PII / Sensitive Data Guards ─────────────────────────────────────────────
+
+  - name: block-ssn-pattern
+    condition: "input_text matches '\\b\\d{3}-\\d{2}-\\d{4}\\b'"
+    action: deny
+    description: "US Social Security Number pattern detected in input — PII blocked (ASI-04)"
+    priority: 100
+
+  - name: block-iban-pattern
+    condition: "input_text matches '\\b[A-Z]{2}\\d{2}[A-Z0-9]{11,30}\\b'"
+    action: deny
+    description: "IBAN bank account pattern detected — PII blocked (ASI-04)"
+    priority: 100
+
+  - name: block-credit-card-pattern
+    condition: "input_text matches '\\b(?:\\d[ -]?){13,16}\\b'"
+    action: deny
+    description: "Credit card number pattern detected — PII blocked (ASI-04)"
+    priority: 99
+
+  # ── Salary Write Guards ──────────────────────────────────────────────────────
+
+  - name: block-negative-salary
+    condition: "action.tool == 'update_salary' and float(action.params.get('new_annual_salary', 0)) <= 0"
+    action: deny
+    description: "Salary must be a positive value — negative or zero salary blocked (ASI-02)"
+    priority: 95
+
+  - name: block-excessive-salary
+    condition: "action.tool == 'update_salary' and float(action.params.get('new_annual_salary', 0)) > 1000000"
+    action: deny
+    description: >
+      Proposed annual salary exceeds $1,000,000 hard cap.
+      Submit a manual HR approval request for executive compensation (ASI-02).
+    priority: 95
+
+  - name: block-excessive-bonus-percent
+    condition: "action.tool == 'update_bonus_eligibility' and float(action.params.get('target_bonus_percent', 0)) > 100"
+    action: deny
+    description: "Target bonus percentage exceeds 100% of annual salary — blocked (ASI-02)"
+    priority: 90
+
+  - name: block-negative-bonus-percent
+    condition: "action.tool == 'update_bonus_eligibility' and float(action.params.get('target_bonus_percent', 0)) < 0"
+    action: deny
+    description: "Negative bonus percentage is not permitted (ASI-02)"
+    priority: 90
+
+  # ── Prompt Injection / Goal Hijack Guards ───────────────────────────────────
+
+  - name: block-prompt-injection-ignore
+    condition: "input_text matches '(?i)(ignore (previous|all|above)|forget (your|all)|disregard|override (policy|rules|instructions))'"
+    action: deny
+    description: "Prompt injection attempt detected — instruction override blocked (ASI-01, ASI-05)"
+    priority: 98
+
+  - name: block-jailbreak-patterns
+    condition: "input_text matches '(?i)(jailbreak|dan mode|developer mode|no restrictions|bypass (safety|policy|governance))'"
+    action: deny
+    description: "Jailbreak attempt detected — blocked (ASI-01)"
+    priority: 98
+
+  - name: block-role-override
+    condition: "input_text matches '(?i)(you are now|act as|pretend (you are|to be)|your (true|real) (self|purpose))'"
+    action: deny
+    description: "Role-override injection attempt — blocked (ASI-01)"
+    priority: 97
+
+  # ── Destructive / Dangerous Tool Guards ─────────────────────────────────────
+
+  - name: block-bulk-write-pattern
+    condition: "input_text matches '(?i)(all employees|everyone|entire (company|org|department|team)|bulk (update|change|modify|salary|bonus))'"
+    action: require_approval
+    approvers: ["payroll-admin", "hr-director"]
+    description: "Bulk payroll modification requires dual approval — limits blast radius (ASI-02, ASI-03, ASI-06)"
+    priority: 85
+
+  - name: block-delete-operations
+    condition: "action.type in ['delete_record', 'drop_table', 'purge_payroll', 'shell_exec', 'exec_sql']"
+    action: deny
+    description: "Destructive database/system operations are strictly prohibited (ASI-02)"
+    priority: 100
+
+  # ── Write Operation Approval ─────────────────────────────────────────────────
+
+  - name: require-approval-confirmed-salary-write
+    condition: "action.tool == 'update_salary' and action.params.get('confirmed') == True"
+    action: require_approval
+    approvers: ["payroll-admin"]
+    description: >
+      All confirmed salary writes are routed through the payroll admin approval channel.
+      The two-step human-in-the-loop confirmation still applies (ASI-03).
+    priority: 80
+
+  - name: require-approval-confirmed-bonus-write
+    condition: "action.tool == 'update_bonus_eligibility' and action.params.get('confirmed') == True"
+    action: require_approval
+    approvers: ["hr-admin"]
+    description: >
+      Confirmed bonus eligibility changes require HR admin sign-off (ASI-03).
+    priority: 80
+
+  # ── Audit Passthrough (all writes logged) ───────────────────────────────────
+
+  - name: audit-all-write-attempts
+    condition: "action.tool in ['update_salary', 'update_bonus_eligibility']"
+    action: allow
+    description: "All compensation write attempts — allowed with mandatory audit trail (ASI-03)"
+    priority: 10

@@ -1,0 +1,10 @@
+apiVersion: solution.sap/v1
+kind: Solution
+
+metadata:
+  name: sf-payroll-agent-7eabd
+  version: 1.0.0
+  description: Pro-code Python AI agent on SAP BTP integrating with SAP SuccessFactors EC and ECP for natural language payroll operations, anomaly detection, tax compliance validation, and compensation management.
+
+assets:
+  - ref: ./assets/sf-payroll-agent/asset.yaml
