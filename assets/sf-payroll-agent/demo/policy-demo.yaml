@@ -1,0 +1,68 @@
+apiVersion: governance.toolkit/v1
+name: sf-payroll-agent-demo-policy
+description: >
+  Minimal payroll governance policy used by demo/agt_demo.py to show, in front
+  of leadership, exactly which risky agent operations the Microsoft Agent
+  Governance Toolkit (AGT) blocks or gates. This is a trimmed, demo-focused
+  cut of the production governance/policy.yaml — same intent, fewer rules, and
+  written in the exact condition grammar the installed AGT engine
+  (agent-governance-toolkit v3.x) evaluates.
+#
+# HOW THE CONDITIONS WORK (important — read before editing)
+# ---------------------------------------------------------
+# The AGT expression evaluator supports ONLY simple, safe expressions:
+#   • equality / inequality against a quoted string:  action.tool == 'update_salary'
+#   • membership in a list:                           action.type in ['x','y']
+#   • numeric comparison:                             action.params.new_annual_salary > 1000000
+#   • a bare boolean fact:                            signals.contains_pii
+#   • boolean composition with `and` / `or`
+# It does NOT support regexes, .lower(), or substring tests inside conditions.
+#
+# So text-based risks (PII, prompt injection, bulk-write wording) are detected
+# in the AGENT's code, which passes plain booleans into the policy context under
+# `signals.*`. The policy then makes the ALLOW / DENY / REQUIRE_APPROVAL call.
+# This mirrors real AGT usage: the application supplies signals, the toolkit is
+# the single, auditable decision point.
+
+default_action: allow
+
+rules:
+  # ── ASI-04 Data Exfiltration — PII in the request is refused outright ───────
+  - name: block-pii
+    stage: pre_tool
+    condition: "signals.contains_pii"
+    action: deny
+    priority: 100
+    description: "PII (SSN / IBAN / credit-card) detected in the request — blocked (OWASP ASI-04)."
+
+  # ── ASI-01 / ASI-05 Goal Hijack & Prompt Injection ─────────────────────────
+  - name: block-prompt-injection
+    stage: pre_tool
+    condition: "signals.has_injection"
+    action: deny
+    priority: 98
+    description: "Prompt-injection / jailbreak / role-override attempt detected — blocked (OWASP ASI-01, ASI-05)."
+
+  # ── ASI-02 Tool Misuse — hard money caps that no prompt can talk past ───────
+  - name: block-excessive-salary
+    stage: pre_tool
+    condition: "action.tool == 'update_salary' and action.params.new_annual_salary > 1000000"
+    action: deny
+    priority: 95
+    description: "Proposed annual salary exceeds the $1,000,000 hard cap — blocked (OWASP ASI-02)."
+
+  - name: block-excessive-bonus
+    stage: pre_tool
+    condition: "action.tool == 'update_bonus_eligibility' and action.params.target_bonus_percent > 100"
+    action: deny
+    priority: 90
+    description: "Target bonus percentage exceeds 100% of salary — blocked (OWASP ASI-02)."
+
+  # ── ASI-03 / ASI-06 Privilege Abuse & Blast Radius — bulk writes need a human ─
+  - name: require-approval-bulk-write
+    stage: pre_tool
+    condition: "signals.is_bulk"
+    action: require_approval
+    approvers: ["payroll-admin", "hr-director"]
+    priority: 85
+    description: "Bulk payroll change (all employees / whole department) requires dual human approval — limits blast radius (OWASP ASI-03, ASI-06)."
